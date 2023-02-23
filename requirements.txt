@@ -1,2 +1,4 @@
 fastapi[all]
 yfinance
+markdown
+python-multipart
