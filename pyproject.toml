@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=80.9.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cfin"
+version = "0.1.0"
+description = "CFin - yfinance for China, exposed as a FastAPI service"
+readme = "README.md"
+requires-python = ">=3.14"
+authors = [{ name = "Sanyorke Han", email = "sanyorke@126.com" }]
+keywords = ["fastapi", "yfinance", "stock", "markdown"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.14",
+    "Framework :: FastAPI",
+    "Typing :: Typed",
+]
+dependencies = [
+    "fastapi>=0.143.3,<1.0",
+    "jinja2>=3.1.6,<4.0",
+    "markdown>=3.11.1,<4.0",
+    "python-multipart>=0.0.32,<1.0",
+    "uvicorn[standard]>=0.54.0,<1.0",
+    "yfinance>=1.7.0,<2.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "httpx2>=2.13.1,<3.0",
+    "pytest>=9.1.1,<10.0",
+]
+
+[project.scripts]
+cfin = "cfin.__main__:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+cfin = [
+    "static/*.html",
+    "static/images/*",
+    "resources/*/*",
+]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
